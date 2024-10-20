@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital clock</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .contanir{
+            width: 100%;
+            min-height: 100vh;
+            background: linear-gradient(20deg, rgb(234, 0, 255), rgb(162, 0, 255));
+            position: relative;
+            justify-content: center;
+            text-align: center;
+            display: flex;
+        }
+        .clock{
+            width: 400px;
+            display: flex;
+            height: 180px;
+            position: relative;
+            align-items: center;
+            bottom: -35vh;
+        }
+        .time{
+            width: 100%;
+            height: 100%;
+            position: relative;
+            background-color: rgba(0, 0, 0, 0.25);
+            border-radius: 20px;
+            box-shadow: 10px 20px 9px rgba(0, 0, 0, 0.5);
+            font-size: 55px;
+            color: rgb(0, 140, 255);
+        }
+        #blinking{
+            animation: infinite 1s bli;
+        }
+        @keyframes bli{
+            0%{
+                opacity: 1%;
+            }
+            100%{
+                opacity: 100%;
+            }
+        }
+        #ampm{
+            font-size: 20px;
+            color: black;
+            font-weight: bold;
+            text-align: center;
+        }
+        .time span#hrs::before{
+            content: 'HOURS';
+            font-size: 15px;
+            position: absolute;
+            bottom: 90px;
+            text-align: center;
+            color: green;
+            font-weight: bolder;
+            width: 80px;
+            box-shadow: inset 6px 6px 6px rgba(0, 0, 0, 0.25), inset -6px -6px 6px rgba(0, 0, 0, 0.35);
+        }
+        .time span#min::before{
+            content: 'MINUTS';
+            font-size: 15px;
+            position: absolute;
+            bottom: 90px;
+            text-align: center;
+            color: green;
+            font-weight: bolder;
+            width: 80px;
+            box-shadow: inset 6px 6px 6px rgba(0, 0, 0, 0.25), inset -6px -6px 6px rgba(0, 0, 0, 0.35);
+        }
+        .time span#sec::before{
+            content: 'SECONDS';
+            font-size: 15px;
+            position: absolute;
+            bottom: 90px;
+            text-align: center;
+            color: green;
+            font-weight: bolder;
+            width: 80px;
+            box-shadow: inset 6px 6px 6px rgba(0, 0, 0, 0.25), inset -6px -6px 6px rgba(0, 0, 0, 0.35);
+        }
+    </style>
+</head>
+<body>
+    <div class="contanir">
+        <div class="clock">
+            <div class="time">
+                <span id="hrs">00</span>
+                <span>:</span>
+                <span id="min">00</span>
+                <span id="blinking">:</span>
+                <span id="sec">00</span>
+                <span id="ampm">A.M</span><br><br>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <script>
+        const hours = document.getElementById("hrs");
+const Minuts = document.getElementById("min");
+const Seconds = document.getElementById("sec");
+const Ampm = document.getElementById("ampm");
+
+setInterval(() =>{
+const hrs = new Date().getHours();
+const min = new Date().getMinutes();
+const sec = new Date().getSeconds();
+Ampm.innerHTML = (hrs>12? "P.M" : "A.M")
+
+    hours.innerHTML = (hrs<10? "0" : "") + hrs;
+    Minuts.innerHTML = (min<10? "0" : "") + min;
+    Seconds.innerHTML = (sec<10? "0" : "") + sec;
+},1000)
+
+    </script>
+</body>
+</html>
